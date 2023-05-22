@@ -135,7 +135,7 @@ function saveHighscore() {
     // get saved scores from localstorage, or if not any, set to empty array
     
     var highscores =
-      JSON.parse(window.localStorage.getItem("highscores")) /* what would go inside the PARSE??*/ || [];
+      JSON.parse(window.localStorage.getItem("final-score")) /* what would go inside the PARSE??*/ || [];
 
     // format new score object for current user
     var newScore = {
@@ -145,7 +145,7 @@ function saveHighscore() {
 
     // save to localstorage
     highscores.push(newScore);
-    window.localStorage.setItem('highscores', JSON.stringify(/* What would we put inside STRINGIFY? */));
+    window.localStorage.setItem('final-score', JSON.stringify(/* What would we put inside STRINGIFY? */));
 
     // redirect to next page
     window.location.href = 'highscores.html';
