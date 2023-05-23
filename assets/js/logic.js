@@ -72,33 +72,32 @@ function questionClick(event) {
 
     // penalize time
     time -= 10;
-  
-   
+
+
 
     // display new time on page
-   timerEl.textContent = time;
+    timerEl.textContent = time;
   }
   // flash right/wrong feedback on page for half a second
   if (buttonEl.value !== questions[currentQuestionIndex].answer) {
-  setTimeout(function()
-  {feedbadEl.removeAttribute("class");},500)}
-  else{
-    setTimeout(function()
-    {feedbackEl.removeAttribute("class");},500)
+    setTimeout(function () { feedbadEl.removeAttribute("class"); }, 500)
   }
-  feedbackEl.setAttribute("class","hide");
-  feedbadEl.setAttribute("class","hide");
-  
+  else {
+    setTimeout(function () { feedbackEl.removeAttribute("class"); }, 500)
+  }
+  feedbackEl.setAttribute("class", "hide");
+  feedbadEl.setAttribute("class", "hide");
+
   // move to next question
   currentQuestionIndex++;
 
   // check if we've run out of questions or if time ran out?
-  if (time <=0||currentQuestionIndex===questions.length) {
+  if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd()
     //if it did ???
 
   } else {
-    
+
     // if it didnt??
     getQuestion()
   }
@@ -106,7 +105,7 @@ function questionClick(event) {
 
 function quizEnd() {
   // stop timer
- clearInterval(timerId);
+  clearInterval(timerId);
   // show end screen
   var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class');
@@ -116,7 +115,7 @@ function quizEnd() {
   finalScoreEl.textContent = time;
 
   // hide questions section
-  questionsEl.setAttribute("class","hide");
+  questionsEl.setAttribute("class", "hide");
 }
 
 function clockTick() {
@@ -135,10 +134,10 @@ function saveHighscore() {
   var initials = initialsEl.value.trim();
 
   // make sure value wasn't empty
-  if (initials !=="") {
+  if (initials !== "") {
 
     // get saved scores from localstorage, or if not any, set to empty array
-    
+
     var highscores =
       JSON.parse(window.localStorage.getItem("scoreslist")) /* what would go inside the PARSE??*/ || [];
 
