@@ -13,6 +13,8 @@ var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 var feedbadEl = document.getElementById('feedbad');
+var audioCorrect=document.getElementById('correct');
+var audioIncorrect=document.getElementById('incorrect');
 
 function startQuiz() {
   // hide start screen
@@ -80,10 +82,10 @@ function questionClick(event) {
   }
   // flash right/wrong feedback on page for half a second
   if (buttonEl.value !== questions[currentQuestionIndex].answer) {
-    setTimeout(function () { feedbadEl.removeAttribute("class"); }, 500)
+    setTimeout(function () { feedbadEl.removeAttribute("class"); audioIncorrect.load();}, 500)
   }
   else {
-    setTimeout(function () { feedbackEl.removeAttribute("class"); }, 500)
+    setTimeout(function () { feedbackEl.removeAttribute("class"); audioCorrect.load();}, 500)
   }
   feedbackEl.setAttribute("class", "hide");
   feedbadEl.setAttribute("class", "hide");
