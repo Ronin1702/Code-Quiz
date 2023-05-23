@@ -12,6 +12,7 @@ var submitBtn = document.getElementById('submit');
 var startBtn = document.getElementById('start');
 var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
+var feedbadEl = document.getElementById('feedbad');
 
 
 function startQuiz() {
@@ -79,11 +80,16 @@ function questionClick(event) {
    timerEl.textContent = time;
   }
   // flash right/wrong feedback on page for half a second
- feedbackEl.removeAttribute("class");
- setTimeout(function(){
-  feedbackEl.setAttribute("class","feedback hide");
- },500);
-
+  if (buttonEl.value !== questions[currentQuestionIndex].answer) {
+  setTimeout(function()
+  {feedbadEl.removeAttribute("class");},500)}
+  else{
+    setTimeout(function()
+    {feedbackEl.removeAttribute("class");},500)
+  }
+  feedbackEl.setAttribute("class","hide");
+  feedbadEl.setAttribute("class","hide");
+  
   // move to next question
   currentQuestionIndex++;
 

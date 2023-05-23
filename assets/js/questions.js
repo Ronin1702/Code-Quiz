@@ -8,7 +8,7 @@ var questions = [
   
   {title: 'The condition in an if/else statement is enclosed with _____.',
   choices: ['quotes','curly brackets','parenthesis','square brackets'],
-  answer: 'parenthesis',
+  answer: 'curly brackets',
   },
 
   {title: 'Arrays in JavaScript can be used to store _____.',
@@ -18,7 +18,7 @@ var questions = [
 
   {title: 'String values must be enclosed within _____ when being assigned to variables.',
   choices: ['commas','curly brackets','quotes','parenthesis'],
-  answer: 'curley brackets',
+  answer: 'quotes',
   },
 
   {title: 'A very useful tool used during development and debugging for printing content to the debugger is:',
