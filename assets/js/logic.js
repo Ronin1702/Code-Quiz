@@ -14,7 +14,6 @@ var initialsEl = document.getElementById('initials');
 var feedbackEl = document.getElementById('feedback');
 var feedbadEl = document.getElementById('feedbad');
 
-
 function startQuiz() {
   // hide start screen
   var startScreenEl = document.getElementById('start-screen');
