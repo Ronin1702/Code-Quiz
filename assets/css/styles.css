@@ -89,7 +89,7 @@ li:nth-child(odd) {
 
 .fade {
   opacity: 0;
-  animation: fade 5s linear;
+  animation: fade 2s linear;
 }
 
 
