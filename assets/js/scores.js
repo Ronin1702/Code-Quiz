@@ -3,7 +3,7 @@ function printHighscores() {
   var highscores = JSON.parse(window.localStorage.getItem('scoreslist')) || [];
 
   // sort highscores by score property in descending order HINT: the sort method. 
-  highscores.sort(function(a, b){
+  highscores.sort(function (a, b) {
     return b.score - a.score;
   })
 
