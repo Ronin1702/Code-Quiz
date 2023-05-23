@@ -16,6 +16,9 @@ var feedbadEl = document.getElementById('feedbad');
 var audioCorrect = document.getElementById('correct');
 var audioIncorrect = document.getElementById('incorrect');
 
+audioCorrect.pause();
+audioIncorrect.pause();
+
 function startQuiz() {
   // hide start screen
   var startScreenEl = document.getElementById('start-screen');
