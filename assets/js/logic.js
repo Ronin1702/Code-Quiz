@@ -85,10 +85,10 @@ function questionClick(event) {
   }
   // flash right/wrong feedback on page for half a second
   if (buttonEl.value !== questions[currentQuestionIndex].answer) {
-    setTimeout(function () { feedbadEl.removeAttribute("class"); audioIncorrect.load(); }, 500)
+    setTimeout(function () { feedbadEl.setAttribute("class", "fade"); audioIncorrect.load(); }, 500)
   }
   else {
-    setTimeout(function () { feedbackEl.removeAttribute("class"); audioCorrect.load(); }, 500)
+    setTimeout(function () { feedbackEl.setAttribute("class", "fade"); audioCorrect.load(); }, 500)
   }
   feedbackEl.setAttribute("class", "hide");
   feedbadEl.setAttribute("class", "hide");
