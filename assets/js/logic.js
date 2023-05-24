@@ -1,10 +1,10 @@
-// variables to keep track of quiz state
+// sety the variables to keep track of quiz's current state
 var currentQuestionIndex = 0;
-//time left value here
+//set how much time is given for the quiz
 var time = 100;
 var timerId;
 
-// variables to reference DOM elements
+// set variable to make references in DOM
 var questionsEl = document.getElementById('questions');
 var timerEl = document.getElementById('time');
 var choicesEl = document.getElementById('choices');
@@ -20,17 +20,17 @@ audioCorrect.pause();
 audioIncorrect.pause();
 
 function startQuiz() {
-  // hide start screen
+  // hide the start screen once quiz starts
   var startScreenEl = document.getElementById('start-screen');
   startScreenEl.setAttribute('class', 'hide');
 
-  // un-hide questions section
+  // un-hide questions
   questionsEl.removeAttribute('class');
 
-  // start timer
+  // start timer and set each interval to 1 second or 1000ms
   timerId = setInterval(clockTick, 1000);
 
-  // show starting time
+  // show the starting time on page
   timerEl.textContent = time;
 
   getQuestion();
@@ -40,11 +40,11 @@ function getQuestion() {
   // get current question object from array
   var currentQuestion = questions[currentQuestionIndex];
 
-  // update title with current question
+  // update title with current question by locating its id
   var titleEl = document.getElementById('question-title');
   titleEl.textContent = currentQuestion.title; //think dot notation
 
-  // clear out any old question choices
+  // erase any old question choices
   choicesEl.innerHTML = '';
 
   // loop over choices
@@ -57,7 +57,7 @@ function getQuestion() {
 
     choiceNode.textContent = i + 1 + '. ' + choice;
 
-    // display on the page
+    // display choices on the page
     choicesEl.appendChild(choiceNode);
   }
 }
@@ -65,7 +65,6 @@ function getQuestion() {
 function questionClick(event) {
   var buttonEl = event.target;
 
-  // if the clicked element is not a choice button, do nothing.
   if (!buttonEl.matches('.choice')) {
     return;
   }
@@ -80,10 +79,10 @@ function questionClick(event) {
 
 
 
-    // display new time on page
+    // display updated time on page
     timerEl.textContent = time;
   }
-  // flash right/wrong feedback on page for half a second
+  // here I made an animation to fade in and out of the right/wrong answers by changing their classes.
   if (buttonEl.value !== questions[currentQuestionIndex].answer) {
     setTimeout(function () { feedbadEl.setAttribute("class", "fade"); audioIncorrect.load(); }, 500)
   }
@@ -93,13 +92,13 @@ function questionClick(event) {
   feedbackEl.setAttribute("class", "hide");
   feedbadEl.setAttribute("class", "hide");
 
-  // move to next question
+  //next question
   currentQuestionIndex++;
 
   // check if we've run out of questions or if time ran out?
   if (time <= 0 || currentQuestionIndex === questions.length) {
+    
     quizEnd()
-    //if it did ???
 
   } else {
 
@@ -115,66 +114,66 @@ function quizEnd() {
   var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class');
 
-  // show final score
+  // show final score page
   var finalScoreEl = document.getElementById('final-score');
   finalScoreEl.textContent = time;
 
-  // hide questions section
+  // hide questions
   questionsEl.setAttribute("class", "hide");
 }
 
 function clockTick() {
-  // update time
+  // update the time
   // decrement the variable we are using to track time
   timerEl.textContent = time--; // update out time
 
-  // check if user ran out of time
+  // check if ran out of time
   if (time <= 0) {
     quizEnd();
   }
 }
 
 function saveHighscore() {
-  // get value of input box
+  // get value of the input box
   var initials = initialsEl.value.trim();
 
-  // make sure value wasn't empty
+  // make sure to check if the value was empty
   if (initials !== "") {
 
-    // get saved scores from localstorage, or if not any, set to empty array
+    // get saved scores from LocalStorage, or if not any, set to empty array
 
     var highscores =
       JSON.parse(window.localStorage.getItem("scoreslist")) /* what would go inside the PARSE??*/ || [];
 
-    // format new score object for current user
+    // format new score object for the current user
     var newScore = {
       score: time,
       initials: initials,
     };
 
-    // save to localstorage
+    // save to LocalStorage
     highscores.push(newScore);
     window.localStorage.setItem('scoreslist', JSON.stringify(highscores));
 
-    // redirect to next page
+    // redirect to the highscores page
     window.location.href = 'highscores.html';
   }
 }
 
 function checkForEnter(event) {
-  // "13" represents the enter key
+  // define the enter key
   if (event.key === 'Enter') {
     saveHighscore();
   }
 }
 
-// user clicks button to submit initials
+// user clicks the button to submit initials
 submitBtn.onclick = saveHighscore;
 
-// user clicks button to start quiz
+// user clicks the button to start quiz
 startBtn.onclick = startQuiz;
 
-// user clicks on element containing choices
+// user clicks on element containing muiltiple choices
 choicesEl.onclick = questionClick;
 
 initialsEl.onkeyup = checkForEnter;
