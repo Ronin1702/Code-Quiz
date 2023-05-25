@@ -87,6 +87,7 @@ li:nth-child(odd) {
   right: 10px;
 }
 
+/* Below I added class called fade to animate fade in and fade out. */
 .fade {
   opacity: 0;
   animation: fade 2s linear;
